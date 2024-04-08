@@ -17,7 +17,22 @@ function same(s1, s2) {
   }
   return true;
 }
+// alternative solution
+function challenge(first, second) {
+  if (first.length !== second.length) return false;
+  let lookup = {};
 
+  for (let i = 0; i < first.length; i++) {
+    let letter = first[i];
+    lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+  }
+  for (let i = 0; i < second.length; i++) {
+    let letter = second[i];
+    if (!lookup[letter]) return false;
+    else lookup[letter] -= 1;
+  }
+  return true
+}
 let s1 = "atc",
   s2 = "cat";
-console.log(same(s1,s2))
+console.log(challenge(s1, s2));
